@@ -44,26 +44,32 @@ namespace NetMap.Models
             set { isOnline = value; }
         }
 
-        public NetworkDevice(string name, string ipAddress, int positionX, int positionY, bool isOnline)
+        // Constructor with clear and renamed parameters
+        public NetworkDevice(string devName, string devIp, int posX, int posY, bool onlineStatus)
         {
-            this.name = name;
-            this.ipAddress = ipAddress;
-            this.positionX = positionX;
-            this.positionY = positionY;
-            this.isOnline = isOnline;
+            this.name = devName;
+            this.ipAddress = devIp;
+            this.positionX = posX;
+            this.positionY = posY;
+            this.isOnline = onlineStatus;
         }
 
+        // Returns the specific device type
         public abstract string GetDeviceType();
 
+        // Draws the device on the graphic canvas
         public abstract void Draw(Graphics g);
 
+        // Checks if mouse coordinates are inside the device boundaries
         public abstract bool IsInside(int xP, int yP);
 
+        // Returns basic details of the device as a string
         public virtual string GetDetails()
         {
             return $"Name: {name}, IP: {ipAddress}, Online: {isOnline}";
         }
 
+        // Returns string description of the device
         public override string ToString()
         {
             return $"Name: {name}, Device type: {GetDeviceType()} ";
