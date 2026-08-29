@@ -23,22 +23,27 @@ namespace NetMap.Models
             set { ramGB = value; }
         }
 
-        public Computer(string name, string ipAddress, int positionX, int positionY, bool isOnline, string operatingSystem, int ramGB):base(name, ipAddress, positionX, positionY, isOnline)
+        // Constructor passing parameters up to base class and setting computer fields
+        public Computer(string devName, string devIp, int posX, int posY, bool onlineStatus, string osName, int memoryRam)
+            : base(devName, devIp, posX, posY, onlineStatus)
         {
-            this.operatingSystem = operatingSystem;
-            this.ramGB = ramGB;
+            this.operatingSystem = osName;
+            this.ramGB = memoryRam;
         }
 
+        // Returns the device type as Computer
         public override string GetDeviceType()
         {
             return "Computer";
         }
 
+        // Returns details including OS and RAM information
         public override string GetDetails()
         {
             return $"{base.GetDetails()}, OS: {operatingSystem}, RAM GB: {ramGB}";
         }
 
+        // Returns string representation of the computer
         public override string ToString()
         {
             return $"Name: {Name}, Device type: {GetDeviceType()}";
