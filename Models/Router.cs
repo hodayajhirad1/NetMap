@@ -23,27 +23,33 @@ namespace NetMap.Models
             set { speedMbps = value; }
         }
 
-        public Router(string name, string ipAddress, int positionX, int positionY, bool isOnline, int numberOfPorts, int speedMbps) : base(name, ipAddress, positionX, positionY, isOnline)
+        // Constructor passing parameters up to base class and setting router fields cleanly
+        public Router(string devName, string devIp, int posX, int posY, bool onlineStatus, int portsCount, int speed)
+            : base(devName, devIp, posX, posY, onlineStatus)
         {
-            this.numberOfPorts = numberOfPorts;
-            this.speedMbps = speedMbps;
+            this.numberOfPorts = portsCount;
+            this.speedMbps = speed;
         }
 
+        // Returns details including ports count and speed information
         public override string GetDetails()
         {
             return $"{base.GetDetails()}, Number of ports: {numberOfPorts}, Speed in Mbps: {speedMbps}";
         }
 
+        // Returns the device type as Router
         public override string GetDeviceType()
         {
             return "Router";
         }
 
+        // Returns string description of the router
         public override string ToString()
         {
             return $"Name: {Name}, Device type: {GetDeviceType()}";
         }
 
+        // Draws the router graphical representation (orange circle) on the canvas
         public override void Draw(Graphics g)
         {
             using (Pen statusPen = new Pen(IsOnline ? Color.Green : Color.Red, 4))
@@ -61,6 +67,7 @@ namespace NetMap.Models
             g.DrawString(Name, SystemFonts.DefaultFont, Brushes.Black, PositionX, PositionY + 55);
         }
 
+        // Checks if mouse click coordinates hit the router shape boundaries
         public override bool IsInside(int xP, int yP)
         {
             return (xP >= PositionX && xP <= PositionX + 50 && yP >= PositionY && yP <= PositionY + 50);
