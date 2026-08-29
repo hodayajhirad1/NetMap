@@ -24,26 +24,32 @@ namespace NetMap.Models
             }
         }
 
-        public Laptop(string name, string ipAddress, int positionX, int positionY, bool isOnline, string operatingSystem, int ramGB, int batteryLevel) : base(name, ipAddress, positionX, positionY, isOnline, operatingSystem, ramGB)
+        // Constructor passing parameters up to base classes with clear and renamed parameters
+        public Laptop(string devName, string devIp, int posX, int posY, bool onlineStatus, string osName, int memoryRam, int battery)
+            : base(devName, devIp, posX, posY, onlineStatus, osName, memoryRam)
         {
-            this.batteryLevel = batteryLevel;
+            this.batteryLevel = battery;
         }
 
+        // Returns the device type as Laptop
         public override string GetDeviceType()
         {
             return "Laptop";
         }
 
+        // Returns details including battery percentage information
         public override string GetDetails()
         {
             return $"{base.GetDetails()}, Battery: {batteryLevel}%";
         }
 
+        // Returns string description of the laptop
         public override string ToString()
         {
             return $"Name: {Name}, Device type: {GetDeviceType()}";
         }
 
+        // Draws the laptop graphical representation on the form canvas
         public override void Draw(Graphics g)
         {
             using (Pen statusPen = new Pen(IsOnline ? Color.Green : Color.Red, 4))
@@ -63,6 +69,7 @@ namespace NetMap.Models
             g.DrawString(Name, SystemFonts.DefaultFont, Brushes.Black, PositionX, PositionY + 45);
         }
 
+        // Checks if mouse click coordinates hit the laptop shape boundaries
         public override bool IsInside(int xP, int yP)
         {
             return (xP >= PositionX && xP <= PositionX + 60 && yP >= PositionY - 35 && yP <= PositionY + 40);
