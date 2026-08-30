@@ -21,7 +21,7 @@ jobs:
       uses: NuGet/setup-nuget@v2
 
     - name: Restore NuGet Packages
-      run: nuget restore
+      run: nuget restore NetMap.csproj
 
-    - name: Build Solution
-      run: msbuild /p:Configuration=Release
+    - name: Build Project
+      run: msbuild NetMap.csproj /p:Configuration=Release
