@@ -1,5 +1,5 @@
 ﻿# NetMap - Network Topology Visualizer & Management System
-
+![.NET Build & CI](https://github.com/hodayajhirad1/NetMap/actions/workflows/build.yml/badge.svg)
 A desktop management tool developed in **C#** and **.NET (WinForms)** for designing, mapping, and managing network devices in an interactive graphical environment.
 
 ---
