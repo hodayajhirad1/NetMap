@@ -21,7 +21,7 @@ jobs:
       uses: NuGet/setup-nuget@v2
 
     - name: Restore NuGet Packages
-      run: nuget restore NetMap.sln
+      run: nuget restore
 
     - name: Build Solution
-      run: msbuild NetMap.sln /p:Configuration=Release
+      run: msbuild /p:Configuration=Release
